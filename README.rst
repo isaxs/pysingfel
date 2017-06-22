@@ -1,3 +1,4 @@
-# singfel-python
+singfel-python
+------
 
 Python version of singfel.
