@@ -1,14 +1,21 @@
 from setuptools import setup
+from io import open
 
-setup(name='funniest',
-      version='0.1',
-      description='The funniest joke in the world',
-      url='http://github.com/storborg/funniest',
-      author='Flying Circus',
-      author_email='flyingcircus@example.com',
-      license='MIT',
-      packages=['funniest'],
-      install_requires=[
-          'numpy',
-      ],
+requirements = [
+            'numpy',
+            'numba',
+            'scipy',
+            'mpi4py',
+            'h5py',
+      ]
+
+setup(name='pysingfel',
+      description='Python version of singfel.',
+      long_description=open('README.rst', encoding='utf8').read(),
+      url='https://github.com/wang-zy/pysingfel',
+      author='Zhaoyou Wang',
+      author_email='zhxywzy@gmail.com',
+      packages=['pysingfel'],
+      scripts=['bin/radiationDamageMPI'],
+      install_requires=requirements,
       zip_safe=False)
