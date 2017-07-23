@@ -74,7 +74,7 @@ class Particle(object):
         Set the ffTable and qSample manually.
         """
         atoms = symmpdb(fname)
-        self.atomPos = atoms[:, 0:3]
+        self.atomPos = atoms[:, 0:3] / 10**10  # convert unit from Angstroms to m
         tmp = (100 * atoms[:, 3] + atoms[:, 4]).astype(int)  # hack to get split idx from the sorted atom array
         atomType, idx = np.unique( np.sort(tmp), return_index=True )
         self.numAtomTypes = len(atomType)

@@ -1,9 +1,9 @@
-from unittest import TestCase
+import unittest
 
 from pysingfel.radiationDamage import *
 
 
-class radiationDamageTests(TestCase):
+class radiationDamageTests(unittest.TestCase):
     def test_diffraction_calculation(self):
         """
         Test diffraction calculation using just one process.
@@ -47,4 +47,7 @@ class radiationDamageTests(TestCase):
         # Check expected files exist.
         self.assertTrue(os.path.isdir(os.path.abspath('diffr_out')))
         self.assertIn('diffr_out_0000001.h5', os.listdir(os.path.abspath('diffr_out')))
+
+if __name__ == '__main__':
+    unittest.main()
 

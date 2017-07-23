@@ -1,9 +1,9 @@
 import subprocess
 import shlex
-from unittest import TestCase
+import unittest
 
 
-class radiationDamageMPITests(TestCase):
+class radiationDamageMPITests(unittest.TestCase):
     def test_diffraction_calculation_parallel(self):
         """
         Test diffraction calculation in parallel.
@@ -31,4 +31,7 @@ class radiationDamageMPITests(TestCase):
         proc.wait()
 
         self.assertTrue(True)
+
+if __name__ == '__main__':
+    unittest.main()
 
