@@ -26,6 +26,8 @@ def main():
     else:
         slave_diffract(comm, parameters)
 
+    comm.Barrier()  # Barrier synchronization
+
     if rank == 0:
         end = time.time()
         print 'Finished: ', end - start, ' seconds.'

@@ -66,5 +66,11 @@ def calculate_compton(particle, detector):
     half_q = detector.q_mod * 1e-10/2.
     cs = CubicSpline(particle.comptonQSample, particle.sBound)
     S_bound = cs(half_q)
-    Compton = S_bound + particle.nFree
+    if isinstance(particle.nFree, (list, tuple, np.ndarray)):
+        # if iterable, take first element to be number of free electrons
+        N_free = particle.nFree[0]
+    else:
+        # otherwise assume to be a single number
+        N_free = particle.nFree
+    Compton = S_bound + N_free
     return Compton
