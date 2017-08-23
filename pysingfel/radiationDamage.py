@@ -7,12 +7,23 @@ def generateRotations(uniformRotation, rotationAxis, numQuaternions):
     """
     Return Quaternions saving the rotations to the particle.
     """
+
+    if uniformRotation is None:
+        # No rotation desired, init quaternions as (1,0,0,0)
+        Quaternions =  np.empty((numQuaternions, 4))
+        Quaternions[:,0] = 1.
+        Quaternions[:,1:] = 0.
+
+        return Quaternions
+
+    # Case uniform:
     if uniformRotation:
         if rotationAxis == 'y' or rotationAxis == 'z':
             return pointsOn1Sphere(numQuaternions, rotationAxis)
         elif rotationAxis == 'xyz':
             return pointsOn4Sphere(numQuaternions)
     else:
+        # Case non-uniform:
         Quaternions = np.zeros((numQuaternions, 4))
         for i in range(numQuaternions):
             Quaternions[i, :] = getRandomRotation(rotationAxis)

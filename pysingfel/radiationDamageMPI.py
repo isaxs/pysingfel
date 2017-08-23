@@ -103,6 +103,8 @@ def parse_input(args):
     """
     def ParseBoolean(b):
         # Handle different possible Boolean types.
+        if b is None:
+            return b
         if b == False or b == True:
             return b
         b = b.strip()
@@ -123,8 +125,10 @@ def parse_input(args):
     parser.add_argument('--geomFile', help='Geometry file defining diffraction geometry')
     parser.add_argument('--configFile', help='Absolute path to the config file')
     parser.add_argument('--rotationAxis', default='xyz', help='Euler rotation convention')
-    parser.add_argument('--uniformRotation', type=ParseBoolean, default=False,
-                        help='If 1, rotates the sample uniformly in SO(3)')
+    parser.add_argument('--uniformRotation', type=ParseBoolean,
+                        help='If 1, rotates the sample uniformly in SO(3),\
+                                if 0 random orientation in SO(3),\
+                                if None (omitted): no orientation.')
     parser.add_argument('--calculateCompton', type=ParseBoolean, default=False,
                         help='If 1, includes Compton scattering in the diffraction pattern')
     parser.add_argument('--sliceInterval', type=int, help='Calculates photon field at every slice interval')
